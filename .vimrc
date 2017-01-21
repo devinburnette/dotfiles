@@ -53,6 +53,7 @@ nmap <S-Down> 10<C-W>+
 nmap <C-W>w <C-W>w130<C-W>\|<C-W>_
 nmap <C-W><C-W> <C-W>w130<C-W>\|<C-W>_
 nmap <C-B> :Gblame<Enter>
+nmap <C-C> :Rtags<Enter>
 
 " For Visual Line mode stuff
 vmap <TAB> >

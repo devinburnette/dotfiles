@@ -1,3 +1,4 @@
+alias v='vim .'
 alias cssh='i2cssh -c'
 alias pg='pg_ctl -D /usr/local/var/postgres'
 alias gb='git branch'
