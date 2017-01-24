@@ -11,6 +11,7 @@ set autoindent
 "set splitright
 "set splitbelow
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,6 +28,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Raimondi/delimitMate'
+Plugin 'slim-template/vim-slim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -104,3 +108,6 @@ else
  " set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
+
+autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
+highlight Pmenu ctermbg=black ctermfg=blue
