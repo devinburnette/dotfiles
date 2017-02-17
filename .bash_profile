@@ -1,4 +1,6 @@
 alias v='vim .'
+alias vi='vim'
+alias ack='ack --ignore-dir=bin --ignore-dir=_bundles --ignore-dir=tmp --ignore-dir=log'
 alias cssh='i2cssh -c'
 alias pg='pg_ctl -D /usr/local/var/postgres'
 alias gb='git branch'
@@ -8,8 +10,9 @@ alias gpl='git pull'
 alias gco='git checkout'
 alias gpr='hub pull-request -o'
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && source ~/.profile
 
+#export PATH=~/.rbenv/shims:$PATH:/usr/local/sbin/
 export PATH=$PATH:/usr/local/sbin/
 
 function migrate(){

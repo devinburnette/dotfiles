@@ -13,6 +13,9 @@ set autoindent
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 let g:ycm_collect_identifiers_from_tags_files = 1
 
+let test#strategy = "basic"
+let test#javascript#jasmine#executable = 'npm test'
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -31,6 +34,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Raimondi/delimitMate'
 Plugin 'slim-template/vim-slim'
+Plugin 'janko-m/vim-test'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -67,6 +71,10 @@ vmap <S-TAB> <
 vmap ## ::s/^\(\s*\)/\1# /<Enter>
 vmap #/ ::s/^\(\s*\)/\1\/\/ /<Enter>
 vmap @ ::!awk '{print substr($0, index($0, $2))}'<Enter>
+
+" For Vim Test stuff
+nmap <C-T>t :TestNearest<Enter>
+nmap <C-T>T :TestFile<Enter>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
