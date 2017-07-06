@@ -7,6 +7,7 @@ syntax on
 set nu
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype php setlocal ts=4 sw=4 sts=0 expandtab
 set autoindent
 "set splitright
 "set splitbelow
@@ -31,7 +32,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'Raimondi/delimitMate'
 Plugin 'slim-template/vim-slim'
 Plugin 'janko-m/vim-test'
