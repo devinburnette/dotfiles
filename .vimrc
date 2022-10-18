@@ -1,56 +1,44 @@
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
 set nocompatible
-set background=light
-filetype on
+filetype off
 syntax on
-set nu
+set background=light
+set number
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype php setlocal ts=4 sw=4 sts=0 expandtab
 set autoindent
-"set splitright
-"set splitbelow
+set backspace=indent,eol,start  " more powerful backspacing
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
-let g:ycm_collect_identifiers_from_tags_files = 1
 
+let test#ruby#bundle_exec = 1
 let test#strategy = "basic"
-let test#javascript#jasmine#executable = 'npm test'
+let test#javascript#jasmine#executable = "npm test"
+
+" autocmd BufWritePre *.tf silent execute '%!terraform fmt -no-color -'
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+au FileType go setl ts=4 sw=4 noexpandtab
+let g:go_fmt_command = "goimports"
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+Plugin 'hashivim/vim-terraform'
+Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
+Plugin 'fatih/vim-go'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'christoomey/vim-system-copy'
 Plugin 'Raimondi/delimitMate'
-Plugin 'slim-template/vim-slim'
 Plugin 'janko-m/vim-test'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
+call vundle#end()
+filetype plugin indent on
 
 " For split window resizing
 nmap <F2> <C-W>=
@@ -61,21 +49,19 @@ nmap <S-Up> 10<C-W>-
 nmap <S-Down> 10<C-W>+
 nmap <C-W>w <C-W>w130<C-W>\|<C-W>_
 nmap <C-W><C-W> <C-W>w130<C-W>\|<C-W>_
-nmap <C-B> :Gblame<Enter>
+nmap <C-B> :Git blame<Enter>
 nmap <C-C> :Rtags<Enter>
 nmap <C-N> :tn<Enter>
 nmap <C-L> :tp<Enter>
 
 " For Visual Line mode stuff
-vmap <TAB> >
-vmap <S-TAB> <
-vmap ## ::s/^\(\s*\)/\1# /<Enter>
-vmap #/ ::s/^\(\s*\)/\1\/\/ /<Enter>
-vmap @ ::!awk '{print substr($0, index($0, $2))}'<Enter>
+"vmap <TAB> >
+"vmap <S-TAB> <
+"vmap @ ::!awk '{print substr($0, index($0, $2))}'<Enter>
 
 " For Vim Test stuff
-nmap <C-T>t :TestNearest<Enter>
-nmap <C-T>T :TestFile<Enter>
+nmap <C-T>t :TestNearest --format documentation<Enter>
+nmap <C-T>T :TestFile --format documentation<Enter>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
